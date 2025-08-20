@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.devsuperior.dslist.dto.GameDTO;
 import com.devsuperior.dslist.projections.GameMinProjection;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.devsuperior.dslist.dto.GameMinDTO;
@@ -15,8 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class GameService {
 
-    @Autowired
-    private GameRepository gameRepository;
+    private final GameRepository gameRepository;
+
+    public GameService(GameRepository gameRepository) {
+        this.gameRepository = gameRepository;
+    }
 
     @Transactional(readOnly = true)
     public List<GameMinDTO> findAll() {
@@ -35,5 +37,4 @@ public class GameService {
         List<GameMinProjection> result = gameRepository.searchByList(listId);
         return result.stream().map(GameMinDTO::new).toList();
     }
-
 }
