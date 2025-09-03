@@ -3,6 +3,7 @@ package com.devsuperior.dslist.services;
 import java.util.List;
 
 import com.devsuperior.dslist.dto.GameDTO;
+import com.devsuperior.dslist.exceptions.ResourceNotFoundException;
 import com.devsuperior.dslist.projections.GameMinProjection;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +29,8 @@ public class GameService {
 
     @Transactional(readOnly = true)
     public GameDTO findById(Long id) {
-        Game result = gameRepository.findById(id).get();
+        Game result = gameRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Game", "id", id));
         return new GameDTO(result);
     }
 
