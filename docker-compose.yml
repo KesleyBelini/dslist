@@ -6,9 +6,9 @@ services:
     image: postgres:15-alpine
     container_name: dslist-postgresql
     environment:
-      POSTGRES_DB: dslist
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: dslist123
+      POSTGRES_DB: ${POSTGRES_DB:-dslist}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - "5432:5432"
     volumes:
@@ -22,9 +22,9 @@ services:
     image: dpage/pgadmin4:latest
     container_name: dslist-pgadmin
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@dslist.com
-      PGADMIN_DEFAULT_PASSWORD: dslist123
-      PGADMIN_CONFIG_SERVER_MODE: 'False'
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-admin@dslist.com}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+      PGADMIN_CONFIG_SERVER_MODE: "False"
     ports:
       - "5050:80"
     volumes:
