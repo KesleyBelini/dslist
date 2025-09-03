@@ -1,8 +1,12 @@
-README.md
 target/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+
+# Environment files
+.env
+.env.local
+.env.*.local
 
 ### STS ###
 .apt_generated
