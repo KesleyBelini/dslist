@@ -4,17 +4,18 @@ import com.devsuperior.dslist.entities.GameList;
 
 public class GameListDTO {
 
-    private Integer id;
+    private Long id;
     private String name;
 
-    public GameListDTO() {}
+    public GameListDTO() {
+    }
 
     public GameListDTO(GameList entity) {
         id = entity.getId();
         name = entity.getName();
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
