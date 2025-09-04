@@ -1,75 +1,154 @@
-# 🎮 DSList - Game Lists Management API
+# DSList - API de Gerenciamento de Listas de Jogos
 
-![Java](https://img.shields.io/badge/Java-17-orange?style=flat-square&logo=java)
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.4-green?style=flat-square&logo=spring-boot)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue?style=flat-square&logo=postgresql)
-![Docker](https://img.shields.io/badge/Docker-Compose-blue?style=flat-square&logo=docker)
+![Java](https://img.shields.io/badge/Java-17-orange?style=for-the-badge&logo=java)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.4-brightgreen?style=for-the-badge&logo=spring-boot)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue?style=for-the-badge&logo=postgresql)
+![Docker](https://img.shields.io/badge/Docker-Compose-blue?style=for-the-badge&logo=docker)
+![Swagger](https://img.shields.io/badge/Swagger-OpenAPI%203.0-85EA2D?style=for-the-badge&logo=swagger)
 
-**DSList** é uma API REST moderna para gerenciamento de listas de jogos digitais, permitindo consultar informações de jogos, criar listas personalizadas e reorganizar a ordem dos itens.
+**API REST para gerenciamento de listas de jogos digitais**
 
-## ✨ Features
+## Sumário
 
-- 🎮 **CRUD de Jogos**: Consulta detalhada e listagem de jogos
-- 📋 **Gerenciamento de Listas**: Criar e gerenciar listas de jogos  
-- 🔄 **Reordenação**: Reorganizar posição dos jogos nas listas
-- 📚 **Swagger UI**: Documentação interativa da API
-- 🐳 **Docker**: Ambiente containerizado pronto para uso
-- 🔒 **Segurança**: CORS configurado e tratamento de exceções
+- [Sobre o Projeto](#sobre-o-projeto)
+- [Tecnologias](#tecnologias)
+- [Como Executar](#como-executar)
+- [Documentação da API](#documentação-da-api)
+- [Modelo de Dados](#modelo-de-dados)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Arquitetura](#arquitetura)
+- [Configuração](#configuração)
+- [Testando a API](#testando-a-api)
+- [Licença](#licença)
+- [Autor](#autor)
 
-## 🚀 Quick Start
+## Sobre o Projeto
 
-### Docker (Recomendado)
+DSList é uma API REST desenvolvida em Spring Boot para gerenciamento de listas de jogos. Permite consultar informações de jogos, criar listas personalizadas e reorganizar a ordem dos itens.
+
+### Funcionalidades
+
+- **Gestão de Jogos**: Listagem e busca detalhada de jogos
+- **Listas Personalizadas**: Criação e gestão de listas de jogos por categoria
+- **Reordenação**: Sistema para reorganizar jogos nas listas
+- **Documentação Interativa**: Interface Swagger para explorar a API
+- **Docker**: Ambiente containerizado completo
+- **Tratamento de Erros**: Respostas padronizadas para exceções
+
+## Tecnologias
+
+### Backend
+
+- **Java 17**: Linguagem de programação
+- **Spring Boot 3.5.4**: Framework principal
+- **Spring Data JPA**: Persistência de dados
+- **Spring Web**: APIs REST
+- **Maven**: Gerenciamento de dependências
+
+### Banco de Dados
+
+- **PostgreSQL**: Banco principal (produção/desenvolvimento)
+- **H2 Database**: Banco em memória (testes)
+
+### Documentação
+
+- **SpringDoc OpenAPI 3**: Documentação automática da API
+- **Swagger UI**: Interface interativa para testes
+
+### DevOps
+
+- **Docker & Docker Compose**: Containerização
+- **Spring Profiles**: Configuração por ambiente
+
+## Como Executar
+
+### Pré-requisitos
+
+- Java 17+
+- Maven 3.6+
+- Docker e Docker Compose (opcional)
+
+### Execução Rápida
+
+#### Docker (Recomendado)
 
 ```bash
-# Clone o repositório
+# Clonar o repositório
 git clone https://github.com/KesleyBelini/dslist.git
 cd dslist
 
-# Configure variáveis de ambiente
+# Configurar variáveis de ambiente
 cp .env.example .env
-# Edite .env com suas senhas
+# Editar o arquivo .env com suas senhas
 
-# Inicie PostgreSQL + pgAdmin
+# Iniciar PostgreSQL + pgAdmin
 docker-compose up -d
 
-# Execute a aplicação
+# Executar a aplicação
 ./mvnw spring-boot:run -Dspring-boot.run.profiles=dev
 ```
 
-### Execução Local
+#### Execução Local (Teste)
 
 ```bash
 # Modo teste (H2 em memória)
 ./mvnw spring-boot:run
 
-# Acesse: http://localhost:8080/swagger-ui.html
+# Acessar: http://localhost:8080/swagger-ui/index.html
 ```
 
-## 📖 Documentação
+### Acessos Após Inicializar
 
-- **Swagger UI**: [`http://localhost:8080/swagger-ui.html`](http://localhost:8080/swagger-ui.html)
-- **H2 Console**: [`http://localhost:8080/h2-console`](http://localhost:8080/h2-console) (modo test)
-- **pgAdmin**: [`http://localhost:5050`](http://localhost:5050) (com Docker)
+- **Swagger UI**: <http://localhost:8080/swagger-ui/index.html>
+- **H2 Console**: <http://localhost:8080/h2-console> (modo test)
+- **pgAdmin**: <http://localhost:5050> (com Docker)
 
-## 🛠️ Tech Stack
+## Documentação da API
 
-- **Backend**: Java 17, Spring Boot 3.5.4, Spring Data JPA
-- **Database**: PostgreSQL (prod/dev), H2 (test)
-- **Documentation**: Swagger/OpenAPI 3
-- **DevOps**: Docker, Docker Compose, Maven
+A API possui documentação completa e interativa através do Swagger/OpenAPI.
 
-## 📋 API Endpoints
+### Links
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `GET` | `/games` | Lista todos os jogos (resumo) |
-| `GET` | `/games/{id}` | Detalhes de um jogo |
+- **Swagger UI**: <http://localhost:8080/swagger-ui/index.html>
+- **OpenAPI JSON**: <http://localhost:8080/v3/api-docs>
+
+### Endpoints Principais
+
+#### Jogos
+
+| Método | Endpoint | Descrição |
+|--------|----------|-----------|
+| `GET` | `/games` | Lista todos os jogos |
+| `GET` | `/games/{id}` | Busca jogo por ID |
+
+#### Listas de Jogos
+
+| Método | Endpoint | Descrição |
+|--------|----------|-----------|
 | `GET` | `/lists` | Lista todas as listas |
-| `GET` | `/lists/{id}` | Detalhes de uma lista |
-| `GET` | `/lists/{id}/games` | Jogos de uma lista |
-| `POST` | `/lists/{id}/replacement` | Reordena jogos na lista |
+| `GET` | `/lists/{id}` | Busca lista por ID |
+| `GET` | `/lists/{listId}/games` | Jogos de uma lista |
+| `POST` | `/lists/{listId}/replacement` | Reordena jogos na lista |
 
-## 🏗️ Architecture
+## Modelo de Dados
+
+![Modelo de Entidades](dslist-model.png)
+
+## Estrutura do Projeto
+
+```
+src/main/java/com/devsuperior/dslist/
+├── controllers/        # Controladores REST
+├── services/          # Lógica de negócio
+├── repositories/      # Acesso aos dados
+├── entities/          # Entidades JPA
+├── dto/              # Objetos de transferência
+├── projections/      # Projeções JPA
+├── exceptions/       # Tratamento de exceções
+└── config/           # Configurações
+```
+
+## Arquitetura
 
 ```
 ┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
@@ -82,33 +161,92 @@ docker-compose up -d
 └─────────────┘    └─────────────┘    └─────────────┘
 ```
 
-## 🔧 Configuration
+## Configuração
 
-### Profiles
+### Perfis Disponíveis
 
-- **test** (default): H2 in-memory database
-- **dev**: PostgreSQL local
-- **prod**: PostgreSQL with environment variables
+#### test (Padrão)
 
-### Environment Variables
+- Banco H2 em memória
+- Dados temporários para desenvolvimento rápido
+- Console H2: <http://localhost:8080/h2-console>
+
+#### dev (Desenvolvimento)
+
+- PostgreSQL via Docker
+- Dados persistentes
+- Configuração em `application-dev.properties`
+
+#### prod (Produção)
+
+- PostgreSQL configurado via variáveis de ambiente
+- Configuração em `application-prod.properties`
+
+### Variáveis de Ambiente
+
+#### Para Produção
 
 ```bash
-# Database
 DB_URL=jdbc:postgresql://localhost:5432/dslist
 DB_USERNAME=postgres
-DB_PASSWORD=your_password
-
-# CORS
-CORS_ORIGINS=http://localhost:3000,http://localhost:5173
+DB_PASSWORD=sua_senha
 ```
 
-## 📄 License
+#### Para Docker
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```bash
+POSTGRES_PASSWORD=sua_senha_segura
+PGADMIN_DEFAULT_PASSWORD=sua_senha_pgadmin
+```
 
-## 👨‍💻 Author
+## Testando a API
+
+### Exemplos de Requisições
+
+```bash
+# Listar todos os jogos
+curl http://localhost:8080/games
+
+# Buscar jogo específico
+curl http://localhost:8080/games/1
+
+# Listar todas as listas
+curl http://localhost:8080/lists
+
+# Jogos de uma lista específica
+curl http://localhost:8080/lists/1/games
+
+# Reordenar jogo (mover posição 2 para posição 0)
+curl -X POST http://localhost:8080/lists/1/replacement \
+  -H "Content-Type: application/json" \
+  -d '{"sourceIndex": 2, "destinationIndex": 0}'
+```
+
+### Exemplo de Resposta
+
+#### GET /games
+
+```json
+[
+  {
+    "id": 1,
+    "title": "Mass Effect Trilogy",
+    "year": 2012,
+    "imgUrl": "https://raw.githubusercontent.com/devsuperior/java-spring-dslist/main/resources/1.png",
+    "shortDescription": "Lorem ipsum dolor sit amet..."
+  }
+]
+```
+
+## Licença
+
+Este projeto está licenciado sob a MIT License - veja o arquivo [LICENSE](LICENSE) para detalhes.
+
+## Autor
 
 **Kesley Belini**
 
-- GitHub: [@KesleyBelini](https://github.com/KesleyBelini)
-- LinkedIn: [Kesley Belini](https://linkedin.com/in/kesleybelini)
+[![GitHub](https://img.shields.io/badge/GitHub-@KesleyBelini-181717?style=for-the-badge&logo=github)](https://github.com/KesleyBelini)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Kesley%20Belini-0A66C2?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/kesleybelini)
+
+**Se este projeto te ajudou, considere dar uma estrela no repositório!**
