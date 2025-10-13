@@ -18,9 +18,9 @@ public class OpenApiConfig {
                         .version("1.0.0")
                         .description("API REST para gerenciamento de listas de jogos desenvolvida com Spring Boot")
                         .contact(new Contact()
-                                .name("DevSuperior")
-                                .email("contato@devsuperior.com")
-                                .url("https://devsuperior.com"))
+                                .name("kesley")
+                                .email("kesley.beline@gmail.com")
+                                .url("https://kesleybelini.com"))
                         .license(new License()
                                 .name("MIT License")
                                 .url("https://opensource.org/licenses/MIT")));
